@@ -1,0 +1,36 @@
+<div class="appointments-dashboard pt-12">
+
+    <!-- Table to display appointments -->
+    <div class="bg-white rounded-lg shadow-md overflow-x-auto ">
+        <table class="w-full text-left ">
+            <thead class="bg-blue-100">
+                <tr>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Appointment ID</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Patient</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Doctor</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Date and Time</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Reason</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Emergency</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let appointment of appointments" class="hover:bg-blue-50">
+                    <td class="px-6 py-4">{{ appointment.appointmentId }}</td>
+                    <td class="px-6 py-4">{{ appointment.patient.patientId }}</td>
+                    <td class="px-6 py-4">{{ appointment.doctor.name }}</td>
+                    <td class="px-6 py-4">{{ appointment.dateTime }}</td>
+                    <td class="px-6 py-4">{{ appointment.reason }}</td>
+                    <td class="px-6 py-4">{{ appointment.emergency ? 'Yes' : 'No' }}</td>
+                    <button
+                    (click)="deleteAppointment(appointment.appointmentId)"
+                    class="px-6 py-3 bg-red-500 text-white font-medium rounded-md shadow hover:bg-red-600 hover:shadow-lg transition duration-200 ease-in-out w-full"
+                >
+                    Delete
+                </button>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

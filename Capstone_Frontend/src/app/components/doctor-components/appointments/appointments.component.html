@@ -1,0 +1,66 @@
+<div  class="appointments-dashboard pt-12">
+
+    <!-- Table to display appointments -->
+    <div class="bg-white rounded-lg shadow-md overflow-x-auto">
+        <table class="w-full text-left">
+            <thead class="bg-blue-100">
+                <tr>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Appointment ID</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Patient ID</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Patient Name</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Doctor</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Date and Time</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Reason</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Emergency</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Status</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let appointment of appointments" class="hover:bg-blue-50">
+                    <td class="px-6 py-4">{{ appointment.appointmentId }}</td>
+                    <td class="px-6 py-4">{{ appointment.patient.patientId }}</td>
+                    <td class="px-6 py-4">{{ appointment.patient.user.username }}</td>
+                    <td class="px-6 py-4">{{ appointment.doctor.name }}</td>
+                    <td class="px-6 py-4">{{ appointment.dateTime }}</td>
+                    <td class="px-6 py-4">{{ appointment.reason }}</td>
+                    <td class="px-6 py-4">{{ appointment.emergency ? 'Yes' : 'No' }}</td>
+                    <td class="px-6 py-4">
+                        <span
+                            [ngClass]="{
+                                'text-green-600 font-semibold': appointment.status === 'Approved',
+                                'text-red-600 font-semibold': appointment.status === 'Rejected',
+                                'text-gray-600': !appointment.status
+                            }"
+                        >
+                            {{ appointment.status || 'Pending' }}
+                        </span>
+                        <td class="px-6 py-4 text-center space-y-4">
+                            <button
+                                (click)="approveAppointment(appointment.appointmentId)"
+                                class="px-6 py-3 bg-green-500 text-white font-medium rounded-md shadow hover:bg-green-600 hover:shadow-lg transition duration-200 ease-in-out w-full"
+                            >
+                                Approve
+                            </button>
+                        
+                            <button
+                                (click)="rejectAppointment(appointment.appointmentId)"
+                                class="px-6 py-3 bg-yellow-500 text-white font-medium rounded-md shadow hover:bg-yellow-600 hover:shadow-lg transition duration-200 ease-in-out w-full"
+                            >
+                                Reject
+                            </button>
+                        
+
+                        </td>
+                        
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Success or Error Message -->
+    <div *ngIf="successMessage" class="mt-4 text-center">
+        <p class="text-green-600 font-semibold">{{ successMessage }}</p>
+    </div>
+</div>

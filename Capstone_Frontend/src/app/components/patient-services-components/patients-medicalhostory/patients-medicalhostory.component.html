@@ -1,0 +1,30 @@
+<!-- Patients View -->
+<div >
+    <div class="flex justify-between items-center mb-6">
+ 
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md overflow-x-auto">
+        <table class="w-full text-left">
+            <thead class="bg-blue-100">
+                <tr>
+                    <th class="px-6 py-4 text-blue-800 font-medium">ID</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Date of Birth</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Phone</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Address</th>
+                    <th class="px-6 py-4 text-blue-800 font-medium">Medical History</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let patient of filteredPatients" class="hover:bg-blue-50">
+                  <td class="px-6 py-4">{{ patient.patientId }}</td>
+                  <td class="px-6 py-4">{{ patient.dob }}</td>
+                  <td class="px-6 py-4">{{ patient.phnNum }}</td>
+                  <td class="px-6 py-4">{{ patient.address }}</td>
+                  <td class="px-6 py-4">{{ patient.medicalHistory }}</td>
+                </tr>
+              </tbody>
+              
+        </table>
+    </div>
+</div>

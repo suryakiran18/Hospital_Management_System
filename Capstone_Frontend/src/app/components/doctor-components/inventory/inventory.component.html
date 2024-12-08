@@ -1,0 +1,64 @@
+         <!-- Inventory View -->
+         <div >
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-700">Manage Inventory</h2>
+                <button class="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700" (click)="openCreateInventoryModal()">
+                    Add Item
+                </button>
+            </div>
+        
+            <div class="bg-white rounded-lg shadow-md overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-blue-100">
+                        <tr>
+                            <th class="px-6 py-4 text-blue-800 font-medium">Item ID</th>
+                            <th class="px-6 py-4 text-blue-800 font-medium">Name</th>
+                            <th class="px-6 py-4 text-blue-800 font-medium">Category</th>
+                            <th class="px-6 py-4 text-blue-800 font-medium">Quantity</th>
+                            <th class="px-6 py-4 text-blue-800 font-medium text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let inventoryItems of inventoryItems" class="hover:bg-blue-50">
+                            <td class="px-6 py-4">{{ inventoryItems.itemId }}</td>
+                            <td class="px-6 py-4">{{ inventoryItems.name }}</td>
+                            <td class="px-6 py-4">{{ inventoryItems.category }}</td>
+                            <td class="px-6 py-4">{{ inventoryItems.quantity }}</td>
+                            <td class="px-6 py-4 text-center space-x-4">
+                                <button class="text-blue-600 hover:underline" (click)="openEditInventoryModal(inventoryItems)">Edit</button>
+                                <button class="text-red-600 hover:underline" (click)="deleteInventory(inventoryItems.itemId)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Inventory Create/Edit Modal -->
+        <div *ngIf="isModalVisible" class="modal fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+            <div class="modal-content bg-white p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/3">
+                <h3 class="text-xl font-semibold">{{ isEditing ? 'Edit Item' : 'Create New Item' }}</h3>
+                <form (ngSubmit)="submitInventoryForm()">
+                    <div class="mt-4">
+                        <label class="block font-medium">Name</label>
+                        <input type="text" [(ngModel)]="inventoryForm.name" name="name" required class="w-full border px-4 py-2 rounded-lg" />
+                    </div>
+                    <div class="mt-4">
+                        <label class="block font-medium">Category</label>
+                        <input type="text" [(ngModel)]="inventoryForm.category" name="category" required class="w-full border px-4 py-2 rounded-lg" />
+                    </div>
+                    <div class="mt-4">
+                        <label class="block font-medium">Quantity</label>
+                        <input type="number" [(ngModel)]="inventoryForm.quantity" name="quantity" required class="w-full border px-4 py-2 rounded-lg" />
+                    </div>
+                    <div class="mt-6 flex justify-end space-x-4">
+                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            {{ isEditing ? 'Update Item' : 'Create Item' }}
+                        </button>
+                        <button type="button" class="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500" (click)="closeInventoryModal()">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>

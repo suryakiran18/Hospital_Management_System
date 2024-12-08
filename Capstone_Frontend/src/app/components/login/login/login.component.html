@@ -1,0 +1,68 @@
+<div class="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-300 via-sky-500 to-blue-50">
+  <div class="flex flex-col lg:flex-row w-full max-w-5xl bg-blue-100 rounded-2xl shadow-2xl overflow-hidden p-6 lg:p-10">
+    <!-- Image Section -->
+    <div class="w-full lg:w-1/2 p-4 lg:p-8 flex justify-center lg:justify-start">
+      <img 
+           src="/assets/images/Loginn.png" 
+           alt="Login_page_image" 
+           class="w-full h-72 lg:h-full object-cover lg:object-[center_right] lg:scale-110 rounded-lg shadow-lg">
+    </div>
+
+    <!-- Form Section -->
+    <div class="w-full lg:w-1/2 p-6 lg:p-8 bg-blue-100 flex flex-col justify-center">
+      <!-- Logo -->
+      <div class="flex justify-center mb-6">
+        <img src="/assets/images/logo.webp" alt="Adarsha_Logo" class="rounded-full h-20 w-20">
+      </div>
+
+      <h1 class="text-2xl font-semibold mb-4 text-gray-800 text-center">ADARSHA</h1>
+      <p class="text-sm mb-6 text-gray-700 text-center">The key to happiness is to sign in.</p>
+      <form class="space-y-4" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div>
+          <label for="username" class="block text-sm font-semibold text-gray-800">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="w-full px-4 py-2 mt-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            placeholder="Username"
+            [(ngModel)]="username"
+            required
+          />
+        </div>
+      
+        <div>
+          <label for="password" class="block text-sm font-semibold text-gray-800">Password</label>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            name="password"
+            class="w-full px-4 py-2 mt-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            placeholder="Password"
+            [(ngModel)]="password"
+            required
+          />
+        </div>
+      
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="showPassword"
+            class="mr-2"
+            (click)="togglePasswordVisibility()"
+          />
+          <label for="showPassword" class="text-sm text-gray-700">Show Password</label>
+        </div>
+      
+        <button
+          type="submit"
+          class="w-full py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        >
+          Login
+        </button>
+      </form>
+      
+      
+    </div>
+  </div>
+</div>

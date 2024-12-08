@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=Hospital_Management_System;integratedSecurity=true;trustServerCertificate=true;
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+
+server:
+  port: 8091
+
